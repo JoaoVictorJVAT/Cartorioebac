@@ -143,52 +143,71 @@ int deletar()
 }
 int main()
 {
+	setlocale(LC_ALL, "Portuguese");
 	int opcao=0; // Definindo variáveis
-	
 	int laco=1;// Variável laco/ tem que ser 1 para sempre entrar no for
+	char senhadigitada[] = "a";
+	int comparacao;
 	
-	for(laco=1;laco=1;)// for = repita quantas vezes eu pedir / enquanto laco for 1 ele ira voltar no início do menu até o usuário pedir para sair
-	{// inicio do for
-    	system("cls"); // Para limpar a tela das opções ateriores 
-        setlocale(LC_ALL, "Portuguese");// Definindo a linguagem Para poder usar acentos
 	
-	    printf("\t Cartório da EBAC\n\n");// Inicio do menu
-    	printf("Escolher opção desejada do menu:\n\n");// \n = espaçamento entre linhas
-    	printf("\t1 - Registrar nomes\n");// \t = espaçamento na linha
-    	printf("\t2 - Consultar nomes\n");
-    	printf("\t3 - Deletar nomes\n");
-    	printf("\t4 - Sair do Programa\n\n");// Fim do menu
-    	printf("Opção: ");
-    	scanf("%d" , &opcao);// Armazena a opção do usuário 1,2,3 ou 4 
-	     // %d É responsável por armazenar variável do tipo inteiro
-    	system("cls");//Responsável por limpar a tela deletando as mensagens anteriores
+	
+	printf("\t Cartório da EBAC\n\n");//Titulo
+	printf("Login de administrador!\n\nDigite a sua senha: ");
+	scanf("%s", senhadigitada);
+	
+	comparacao = strcmp(senhadigitada, "admin");
+	
+	
+	if(comparacao == 0)
+	{//inicio do if
+	
+	    system("cls");
+	    for(laco=1;laco=1;)// for = repita quantas vezes eu pedir / enquanto laco for 1 ele ira voltar no início do menu até o usuário pedir para sair
+	    {// inicio do for
+    	    system("cls"); // Para limpar a tela das opções ateriores 
+            setlocale(LC_ALL, "Portuguese");// Definindo a linguagem Para poder usar acentos
+	
+	        printf("\t Cartório da EBAC\n\n");// Inicio do menu
+    	    printf("Escolher opção desejada do menu:\n\n");// \n = espaçamento entre linhas
+         	printf("\t1 - Registrar nomes\n");// \t = espaçamento na linha
+         	printf("\t2 - Consultar nomes\n");
+         	printf("\t3 - Deletar nomes\n");
+         	printf("\t4 - Sair do Programa\n\n");// Fim do menu
+        	printf("Opção: ");
+         	scanf("%d" , &opcao);// Armazena a opção do usuário 1,2,3 ou 4 
+	        // %d É responsável por armazenar variável do tipo inteiro
+        	system("cls");//Responsável por limpar a tela deletando as mensagens anteriores
     
-    switch(opcao)// inicio da seleção do menu switch case
-		{
+            switch(opcao)// inicio da seleção do menu switch case
+		    {
 			
-		case 1:
-			registro();//chamada da função registro
-            break;//para fechar chaves do Switch case
+    	    	case 1:
+     	    	registro();//chamada da função registro
+                break;//para fechar chaves do Switch case
            	
-        case 2:
-            consulta();//chamada da função consulta
-        	break;
+                case 2:
+                consulta();//chamada da função consulta
+                break;
          	
-        case 3:
-        	deletar();//chamada da função deletar
-        	break;
+                case 3:
+                deletar();//chamada da função deletar
+                break;
         
-		case 4: // Opção de sair
-            printf("Obrigado por utilizar o sistema!\n");//mensagem de saída
-			return 0;
-			break;	
+	            case 4: // Opção de sair
+                printf("Obrigado por utilizar o sistema!\n");//mensagem de saída
+		        return 0;
+		        break;	
         	
-        default:
-        	printf("Essa opção não está disponivel!\n");
-	       	system("pause");
-	       	break;
-    	}// fim da seleção switch case
-   	}  // fim do for
-}
+                default:
+              	printf("Essa opção não está disponivel!\n");
+	         	system("pause");
+	        	break;
+    	    }// fim da seleção switch case
+   	    }  // fim do for
+   }//fim do if
+    else
+    printf("Senha incorreta!");
+
+}// fim int main
 
 
