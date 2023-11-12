@@ -51,7 +51,7 @@ int registro()//Função responsavel por cadastrar os usuarios no sistema
     fclose(file);
     
     file = fopen(arquivo, "a");
-    fprintf(file,sobrenome);
+    fprintf(file,sobrenome);  // Inserir o que o usuário digitou no arquivo
     fclose(file);
     
     
@@ -91,7 +91,7 @@ int consulta()
     char cpf[40];
     char conteudo[200];
     
-    printf("Digite o CPF a ser consultado: \n");
+    printf("Digite o CPF a ser consultado: \n");// Recebendo qual usuário vai ser consultado.
     scanf("%s",cpf);
     printf("\n");
     
@@ -102,7 +102,7 @@ int consulta()
     
     if(file == NULL)// Se o valor retornado for null o arquivo não foi encontrado 
 	{
-	        printf("Não foi possivel abrir o arquivo, não localizado!. \n");
+	        printf("Não foi possivel abrir o arquivo, não localizado!. \n"); //Mensagem impressa quando o arquivo não for encontrado.
     }
     
 	
@@ -128,18 +128,30 @@ int deletar()
     printf("Digite o CPF do usuário a ser deletado:");
     scanf("%s", cpf);
     
-    remove(cpf); // Remover o cpf cadastrado na pasta/banco de dados
-   
+  if (remove(cpf) == 0) 
+  {
+  	printf("Usuário removido com sucesso.\n");
+  	system("pause");
+  }
+  else {
+  	printf("O usuário não se encontra no sistema!\n");
+  	system ("pause");
+  	return 1; // // Retorna um código de erro para indicar falha na remoção
+  }
+
     FILE *file;
     file = fopen(cpf,"r"); // abrir o arquivo cpf e ler
     
-    if(file == NULL); // Se não achar o arquivo imprimir mensagem
-	{	
-	    printf("O usuário não se encontra no sistema! .\n");
-	    system("pause");
-	}
-	
+    if(file != NULL) {
+    // Se o arquivo ainda existir após a remoção, há algo errado
+    printf("Erro: O arquivo ainda existe após a remoção!\n");
+    fclose(file);
+    system("pause");
+    return 1;// Retorna um código de erro
+}
+
 	fclose(file);//fechar o arquivo
+	return 0; // Retorna 0 para indicar sucesso
 }
 int main()
 {
